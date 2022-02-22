@@ -24,17 +24,15 @@ $data = mysqli_fetch_assoc($result);
 <div class="container">
   <div class="row">
     <?php include('include/left-nav.php');?>
-    <div class="col-4">
-      <ul class="list-group">
-        <li class="list-group-item"><a href="category.php">Add category</a></li>
-        <li class="list-group-item"><a href="add-post.php">Add Post</a></li>
-        <li class="list-group-item"><a href="post.php">Posts</a></li>
-      </ul>
-    </div>
-
-
-    <div class="col-8">
-      this is col-8
+   <div class="col-8">
+      <form method="POST" action="#">
+          <label>Category title</label>
+          <div class="input-group">
+              <input type="text" class="form-control" name="category">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Save</button>
+      </form>
     </div>
   </div>
 </div>
