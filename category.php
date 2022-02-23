@@ -8,8 +8,10 @@ session_start();
  $query = "SELECT * FROM users WHERE id='$id'";
 $result = mysqli_query($conn,$query);
 $data = mysqli_fetch_assoc($result);
+ 
 
-
+$categoryQuery = "SELECT * FROM category";
+$categoryResult = mysqli_query($conn, $categoryQuery);
 
 ?>
 
@@ -38,6 +40,30 @@ $data = mysqli_fetch_assoc($result);
           <button type="submit" class="btn btn-primary">Save</button>
       </form>
       <?php include('include/message.php'); ?>
+      <div class="row justify-content-md-center">
+        <?php
+        if(mysqli_num_rows($categoryResult)==0){
+          echo "<h3>No Category found </h3>";
+        }else{  ?>
+
+        <table class="table">
+          <thead>
+            <th>Title</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <?php while($row=mysqli_fetch_assoc($categoryResult)){ ?>
+            <tr>
+              <td><?php echo $row['title'];?></td>
+              <td>D | E</td>
+            </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+
+        <?php  }  ?>
+      
+      </div>
     </div>
   </div>
 </div>
