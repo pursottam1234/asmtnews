@@ -55,7 +55,7 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
             <?php while($row=mysqli_fetch_assoc($categoryResult)){ ?>
             <tr>
               <td><?php echo $row['title'];?></td>
-              <td><a href="db/delete-category.php?id=<?php echo $row['id']; ?>">D</a> | E</td>
+              <td><a href="#" onclick="deleteConfirmation(<?php echo $row['id'];?>);"><i class="fa-solid fa-trash"></i></a> | E</td>
             </tr>
             <?php } ?>
           </tbody>
@@ -68,8 +68,31 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
   </div>
 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/18e7e11ee0.js" crossorigin="anonymous"></script>
+<script src="js/bootbox.min.js"></script>
+<script>
+function deleteConfirmation(id){
+  bootbox.confirm({
+    message: "Are you sure?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+        if(result){
+          window.location = 'db/delete-category.php?id='+id;
+        }
+    }
+});
+}
+</script>
 </body>
 </html>
