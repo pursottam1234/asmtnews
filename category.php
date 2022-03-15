@@ -55,7 +55,7 @@ $categoryResult = mysqli_query($conn, $categoryQuery);
             <?php while($row=mysqli_fetch_assoc($categoryResult)){ ?>
             <tr>
               <td><?php echo $row['title'];?></td>
-              <td><a href="#" onclick="deleteConfirmation(<?php echo $row['id'];?>);"><i class="fa-solid fa-trash"></i></a> | E</td>
+              <td><a href="#" onclick="deleteConfirmation(<?php echo $row['id'];?>);"><i class="fa-solid fa-trash"></i></a> | <a href="edit-category.php?id=<?php echo $row['id'];?>"><i class="fa-solid fa-pencil"></i></a></td>
             </tr>
             <?php } ?>
           </tbody>
