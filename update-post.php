@@ -29,12 +29,14 @@ $categoryResult = mysqli_query($conn,$categoryQuery);
         <form method="POST"action="db/add-post.php" enctype="multipart/form-data">
          <div class="mb-3">
            <label for="" class="form-label">Title</label>
-           <input type="text" class="form-control" name="title">
+           <input type="text" value="<?php echo $post['title'];?>" class="form-control" name="title">
          </div>
 
          <div class="mb-3">
            <label for="" class="form-label"></label>
-           <textarea id="news" class="form-control" name="content"></textarea>
+           <textarea id="news" class="form-control" name="content">
+           <?php echo $post['content'];?>
+           </textarea>
          </div>
 
          <div class="mb-3">
@@ -46,7 +48,7 @@ $categoryResult = mysqli_query($conn,$categoryQuery);
            <label for="" class="form-label">Category</label>
            <select class="form-control" name="category">
              <?php while($row=mysqli_fetch_assoc($categoryResult)){ ?>
-              <option value="<?php echo $row['id'];?>">
+              <option value="<?php echo $row['id'];?>"> <?php if($post['id']){ echo "selected";}?>
               <?php echo $row['title']; ?></option>
              <?php } ?>
            </select>

@@ -1,4 +1,16 @@
 <?php
+if(!isset($_GET['id'])){
+  die("not allowed this page");
+}
+$pid = $_GET['id'];
+$postQuery = "SELECT * FROM post WHERE id = '$pid'";
+$postResult = mysqli_query($conn, $postQuery);
+if(mysqli_num_rows($postResult)==0){
+  die("no record found");
+}
+$post = mysqli_fetch_assoc($postResult);
+
+
 session_start();
  if(!isset($_SESSION['login']) || !$_SESSION['login']==1){
    header('Location:login.php');
@@ -9,7 +21,8 @@ session_start();
 $result = mysqli_query($conn,$query);
 $data = mysqli_fetch_assoc($result);
 
-
+$postQuery = "SELECT * FROM post";
+$postResult = mysqli_query($conn, $postQuery);
 
 ?>
 
@@ -28,7 +41,21 @@ $data = mysqli_fetch_assoc($result);
 
 
     <div class="col-8">
-      this is col-8
+      <table class="table">
+        <th>
+          Title</th>
+          <th>Post Date</th>
+          <th>Action</th>
+          <?php while($row = mysqli_fetch_assoc($postResult)){?>
+            
+            <tr>
+              <td><?php $row['title'];?></td>
+              <td><?php $row['postDate'];?></td>
+              <td><a href="update-post.php?id=<?php echo $row['id'];?>">Update</a>|Delete</td>
+
+            </tr>
+          <?php } ?>
+      </table>
     </div>
   </div>
 </div>
