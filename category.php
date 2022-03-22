@@ -91,7 +91,7 @@ function deleteConfirmation(id){
           window.location = 'db/delete-category.php?id='+id;
         }
     }
-});
+  });
 }
 </script>
 </body>
