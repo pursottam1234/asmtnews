@@ -45,7 +45,7 @@ if(mysqli_num_rows($categoryResult)==0){
           </div>
           <br/>
           <div class="input-group">
-              <input type="text" value="<?php echo $row['inconImage'];?>" placeholder="fa icon class" class="form-control" name="iconclass">
+              <input type="text" value="<?php echo $row['inconImage'];?>" placeholder="fa icon class" class="form-control" name="iconClass">
           </div>
           <br/>
           <button type="submit" class="btn btn-primary">Save</button>
